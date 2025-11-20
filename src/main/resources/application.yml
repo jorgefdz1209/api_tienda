@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:tienda_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  profiles:
+    active: h2
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.miempresa.api_tienda: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/tienda_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: your_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
